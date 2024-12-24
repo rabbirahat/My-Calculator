@@ -16,7 +16,7 @@ public class CalculatorGUI extends JFrame {
         // Create the main window
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(1300,50,400,400);
+        frame.setBounds(1300,50,400,500);
         frame.getContentPane().setBackground(Color.BLACK);
         frame.setLayout(new BorderLayout());
         frame.setResizable(true);
@@ -51,7 +51,7 @@ public class CalculatorGUI extends JFrame {
                 return new Dimension(size * cols, size * rows);
             }
         };
-        buttonPanel.setLayout(new GridLayout(6, 4, 5, 5)); // 6 rows and 4 columns with 5px gaps
+        buttonPanel.setLayout(new GridLayout(6, 4, 3, 3)); // 6 rows and 4 columns with 5px gaps
 
         // Define button labels
         String[] buttons = {
@@ -66,7 +66,7 @@ public class CalculatorGUI extends JFrame {
         // Add buttons to the panel
         for (String label : buttons) {
             JButton button = new JButton(label);
-            button.setFont(new Font("Arial", Font.BOLD, 20));
+            button.setFont(new Font("Arial", Font.PLAIN, 20));
             button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
             button.addActionListener(e -> processInput(label));
 
