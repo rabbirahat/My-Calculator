@@ -16,8 +16,8 @@ public class CalculatorGUI extends JFrame {
         // Create the main window
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(1300,50,400,500);
-        frame.getContentPane().setBackground(Color.BLACK);
+        frame.setBounds(1300,50,420,620);
+        frame.getContentPane().setBackground(Color.DARK_GRAY);
         frame.setLayout(new BorderLayout());
         frame.setResizable(true);
 
@@ -27,17 +27,19 @@ public class CalculatorGUI extends JFrame {
 
         // Expression label (top)
         expressionLabel = new JLabel("", SwingConstants.RIGHT);
-        expressionLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        expressionLabel.setPreferredSize(new Dimension(frame.getWidth(), 70));
+        expressionLabel.setFont(new Font("Arial", Font.PLAIN, 17));
+        expressionLabel.setPreferredSize(new Dimension(frame.getWidth(), 40));
         expressionLabel.setForeground(Color.WHITE);
         frame.add(expressionLabel, BorderLayout.NORTH);
 
         // Input/output text field
         textField = new JTextField();
-        textField.setFont(new Font("Arial", Font.BOLD, 24));
+        textField.setFont(new Font("Arial", Font.BOLD, 28));
         textField.setHorizontalAlignment(JTextField.RIGHT);
-        textField.setPreferredSize(new Dimension(frame.getWidth(), 40));
+        textField.setPreferredSize(new Dimension(frame.getWidth(), 50));
         textField.setEditable(false);
+        textField.setBackground(Color.WHITE);
+        textField.setForeground(Color.BLACK);
         frame.add(textField, BorderLayout.CENTER);
 
         // Create the panel for buttons
@@ -51,7 +53,7 @@ public class CalculatorGUI extends JFrame {
                 return new Dimension(size * cols, size * rows);
             }
         };
-        buttonPanel.setLayout(new GridLayout(6, 4, 3, 3)); // 6 rows and 4 columns with 5px gaps
+        buttonPanel.setLayout(new GridLayout(6, 4, 2, 2)); // 6 rows and 4 columns with 2px gaps
 
         // Define button labels
         String[] buttons = {
