@@ -16,9 +16,10 @@ public class CalculatorGUI extends JFrame {
         // Create the main window
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 450);
+        frame.setBounds(1300,50,400,400);
         frame.getContentPane().setBackground(Color.BLACK);
         frame.setLayout(new BorderLayout());
+        frame.setResizable(false);
 
         // Set calculator icon
         ImageIcon icon = new ImageIcon(getClass().getResource("Windows_Calculator_icon.png"));
