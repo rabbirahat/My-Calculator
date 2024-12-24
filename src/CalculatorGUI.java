@@ -19,7 +19,7 @@ public class CalculatorGUI extends JFrame {
         frame.setBounds(1300,50,400,400);
         frame.getContentPane().setBackground(Color.BLACK);
         frame.setLayout(new BorderLayout());
-        frame.setResizable(false);
+        frame.setResizable(true);
 
         // Set calculator icon
         ImageIcon icon = new ImageIcon(getClass().getResource("Windows_Calculator_icon.png"));
@@ -41,14 +41,22 @@ public class CalculatorGUI extends JFrame {
         frame.add(textField, BorderLayout.CENTER);
 
         // Create the panel for buttons
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(6, 4, 5, 5));
-        
+        buttonPanel = new JPanel() {
+            @Override
+            public Dimension getPreferredSize() {
+                // Calculate a square button size based on the frame dimensions
+                int rows = 6;
+                int cols = 4;
+                int size = Math.min(frame.getWidth() / cols, (frame.getHeight() - 150) / rows); // Adjust for label and textField height
+                return new Dimension(size * cols, size * rows);
+            }
+        };
+        buttonPanel.setLayout(new GridLayout(6, 4, 5, 5)); // 6 rows and 4 columns with 5px gaps
 
         // Define button labels
         String[] buttons = {
-                "C", "CE", "Backspc", "/",
-                "1/x", "x^2", "root(x)", "%",
+                "%", "CE", "C", "Backspc",
+                "1/x", "x^2", "root(x)", "/",
                 "7", "8", "9", "x",
                 "4", "5", "6", "-",
                 "1", "2", "3", "+",
@@ -72,6 +80,8 @@ public class CalculatorGUI extends JFrame {
                 button.setForeground(Color.WHITE);
             }
 
+            // Set button to be square
+            button.setPreferredSize(new Dimension(80, 80)); // Fixed size for buttons
             buttonPanel.add(button);
         }
 
