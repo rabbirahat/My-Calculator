@@ -38,7 +38,31 @@ public class CalculatorLogic {
                 case "+/-":
                     if (!currentText.isEmpty()) {
                         double value = Double.parseDouble(currentText) * -1;
-                        return String.valueOf(value);
+                        return formatResult(value);
+                    }
+                    return currentText;
+                case "1/x":
+                    if (!currentText.isEmpty()) {
+                        double value = Double.parseDouble(currentText);
+                        if (value != 0) {
+                            return formatResult(1 / value);
+                        }
+                        return "Error"; // Handle division by zero
+                    }
+                    return currentText;
+                case "x^2":
+                    if (!currentText.isEmpty()) {
+                        double value = Double.parseDouble(currentText);
+                        return formatResult(value * value);
+                    }
+                    return currentText;
+                case "root(x)":
+                    if (!currentText.isEmpty()) {
+                        double value = Double.parseDouble(currentText);
+                        if (value >= 0) {
+                            return formatResult(Math.sqrt(value));
+                        }
+                        return "Error"; // Handle square root of negative number
                     }
                     return currentText;
                 case "=":
@@ -61,6 +85,7 @@ public class CalculatorLogic {
             return "Error";
         }
     }
+
 
     private void reset() {
         currentResult = 0;
