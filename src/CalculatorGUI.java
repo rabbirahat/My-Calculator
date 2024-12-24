@@ -17,7 +17,7 @@ public class CalculatorGUI extends JFrame {
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(1300,50,430,630);
-        frame.getContentPane().setBackground(Color.DARK_GRAY);
+        frame.getContentPane().setBackground(Color.WHITE);
         frame.setLayout(new BorderLayout());
         frame.setResizable(true);
 
@@ -29,7 +29,7 @@ public class CalculatorGUI extends JFrame {
         expressionLabel = new JLabel("", SwingConstants.RIGHT);
         expressionLabel.setFont(new Font("Arial", Font.PLAIN, 17));
         expressionLabel.setPreferredSize(new Dimension(frame.getWidth(), 40));
-        expressionLabel.setForeground(Color.WHITE);
+        expressionLabel.setForeground(Color.BLACK);
         frame.add(expressionLabel, BorderLayout.NORTH);
 
         // Input/output text field
@@ -88,18 +88,47 @@ public class CalculatorGUI extends JFrame {
         }
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
-        frame.setVisible(true);
 
-        // Add keyboard input listener
-        frame.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char key = e.getKeyChar();
-                if (Character.isDigit(key) || "+-*/.=C%".indexOf(key) != -1) {
+        // Add keyboard input listener using KeyBindings
+        InputMap inputMap = frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = frame.getRootPane().getActionMap();
+
+        // Define supported keys
+        String keys = "0123456789+-*/.=C%";
+        for (char key : keys.toCharArray()) {
+            inputMap.put(KeyStroke.getKeyStroke(key), String.valueOf(key));
+            actionMap.put(String.valueOf(key), new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
                     processInput(String.valueOf(key));
-                } else if (key == '\n') { // Enter key for "="
-                    processInput("=");
                 }
+            });
+        }
+
+        // Handle Enter key for "="
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "=");
+        actionMap.put("=", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processInput("=");
+            }
+        });
+
+        // Handle Backspace key
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "Backspc");
+        actionMap.put("Backspc", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processInput("Backspc");
+            }
+        });
+
+        // Handle Clear (C) key
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "C");
+        actionMap.put("C", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processInput("C");
             }
         });
 
@@ -123,4 +152,5 @@ public class CalculatorGUI extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(CalculatorGUI::new);
     }
+
 }
