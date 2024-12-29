@@ -38,6 +38,50 @@ cd MyCalculator
 javac Calculator.java CalculatorGUI.java CalculatorLogic.java
 java Calculator
 
-## Output:
+## Screenshots
 ![image](https://github.com/user-attachments/assets/3cf5a15c-0f5c-4d51-851e-f3ddd32cebdf)
+
+### How to Use
+**1. Starting the Calculator:** Launch the application. The main calculator interface will open.
+
+**2. Performing Calculations:**
+- Click on the buttons or use the keyboard to input numbers and operators.
+- Press = or Enter to evaluate the expression.
+
+**3. Clearing Input:**
+- CE: Clears the current entry.
+- C: Clears the entire expression.
+
+**4.Keyboard Shortcuts:**
+- Numbers: 0-9
+- Decimal Point: .
+- Operators: +, -, *, /
+- Clear: ESC (C), Backspace (Backspc)
+- Evaluate: Enter or =
+
+## Code Overview
+### Main Components
+**1. Calculator.java:** The entry point of the application. Initializes the GUI.
+
+**2. CalculatorGUI.java:** The entry point of the application. Initializes the GUI.
+- Creates and manages the GUI using Swing components.
+- Handles button clicks and keyboard inputs.
+- Updates the display with the result and expression.
+  
+**3. CalculatorLogic.java:** The entry point of the application. Initializes the GUI.
+- Handles the core mathematical operations and logic.
+- Manages the calculation state, including the current result, last operator, and input clearing.
+
+### Key Classes and Methods
+- processInput(String input):
+   - Handles button and keyboard inputs.
+   - Updates the display with results or error messages.
+
+- calculate(double input):
+   - Performs arithmetic operations based on the last operator.
+ 
+- reset():
+   - Resets the calculator state.
+
+
 
